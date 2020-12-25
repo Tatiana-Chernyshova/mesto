@@ -16,62 +16,62 @@
       </a>
       <div class="header__line"></div>
     </header>
-    <main class="content page__content"></main>
-    <section class="profile content__profile">
-      <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar" />
-      <div class="profile__info">
-        <div class="profile__text">
-          <h1 class="profile__name">Жак-Ив Кусто</h1>
-          <p class="profile__about">Исследователь океана</p>
+    <main class="content page__content">
+      <section class="profile content__profile">
+        <img src="./images/avatar.jpg" alt="Аватар" class="profile__avatar" />
+        <div class="profile__info">
+          <div class="profile__text">
+            <h1 class="profile__name">Жак-Ив Кусто</h1>
+            <p class="profile__about">Исследователь океана</p>
+          </div>
+          <button class="profile__button profile__button_edit"></button>
         </div>
-        <button class="profile__button profile__button_edit"></button>
-      </div>
-      <button class="profile__button profile__button_add"></button>
-    </section>
-    <section class="elements content__elements">
-      <div class="elements__item">
-        <img src="./images/karachaevsk.jpg" alt="Фото Карачаевск" class="elements__image" />
-        <div class="elements__flex">
-          <p class="elements__caption">Карачаевск</p>
-          <span class="elements__button-like"></span>
+        <button class="profile__button profile__button_add"></button>
+      </section>
+      <section class="elements content__elements">
+        <div class="elements__item">
+          <img src="./images/karachaevsk.jpg" alt="Фото Карачаевск" class="elements__image" />
+          <div class="elements__flex">
+            <p class="elements__caption">Карачаевск</p>
+            <span class="elements__button-like"></span>
+          </div>
         </div>
-      </div>
-      <div class="elements__item">
-        <img src="./images/elbrus.jpg" alt="Фото Гора Эльбрус" class="elements__image" />
-        <div class="elements__flex">
-          <p class="elements__caption">Гора Эльбрус</p>
-          <span class="elements__button-like"></span>
+        <div class="elements__item">
+          <img src="./images/elbrus.jpg" alt="Фото Гора Эльбрус" class="elements__image" />
+          <div class="elements__flex">
+            <p class="elements__caption">Гора Эльбрус</p>
+            <span class="elements__button-like"></span>
+          </div>
         </div>
-      </div>
-      <div class="elements__item">
-        <img src="./images/dombai.jpg" alt="Фото Домбай" class="elements__image" />
-        <div class="elements__flex">
-          <p class="elements__caption">Домбай</p>
-          <span class="elements__button-like"></span>
+        <div class="elements__item">
+          <img src="./images/dombai.jpg" alt="Фото Домбай" class="elements__image" />
+          <div class="elements__flex">
+            <p class="elements__caption">Домбай</p>
+            <span class="elements__button-like"></span>
+          </div>
         </div>
-      </div>
-      <div class="elements__item">
-        <img src="./images/dombai.jpg" alt="Фото Домбай" class="elements__image" />
-        <div class="elements__flex">
-          <p class="elements__caption">Домбай</p>
-          <span class="elements__button-like"></span>
+        <div class="elements__item">
+          <img src="./images/dombai.jpg" alt="Фото Домбай" class="elements__image" />
+          <div class="elements__flex">
+            <p class="elements__caption">Домбай</p>
+            <span class="elements__button-like"></span>
+          </div>
         </div>
-      </div>
-      <div class="elements__item">
-        <img src="./images/karachaevsk.jpg" alt="Фото Карачаевск" class="elements__image" />
-        <div class="elements__flex">
-          <p class="elements__caption">Карачаевск</p>
-          <span class="elements__button-like"></span>
+        <div class="elements__item">
+          <img src="./images/karachaevsk.jpg" alt="Фото Карачаевск" class="elements__image" />
+          <div class="elements__flex">
+            <p class="elements__caption">Карачаевск</p>
+            <span class="elements__button-like"></span>
+          </div>
         </div>
-      </div>
-      <div class="elements__item">
-        <img src="./images/elbrus.jpg" alt="Фото Гора Эльбрус" class="elements__image" />
-        <div class="elements__flex">
-          <p class="elements__caption">Гора Эльбрус</p>
-          <span class="elements__button-like"></span>
+        <div class="elements__item">
+          <img src="./images/elbrus.jpg" alt="Фото Гора Эльбрус" class="elements__image" />
+          <div class="elements__flex">
+            <p class="elements__caption">Гора Эльбрус</p>
+            <span class="elements__button-like"></span>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </main>
     <footer class="footer page__footer">
       <div class="footer__copyright">
@@ -82,10 +82,10 @@
       <form class="popup__container">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
-          <!-- <label for="heading" class="form__label"></label> -->
+          <!-- <label for="heading" class="form__label"></label>  -->
           <input type="text" class="popup__item popup__item_el_name" id="name" name="name" placeholder="Ваше имя"
             value="Жак-Ив Кусто" required>
-          <!-- <label for="subheading" class="form__label"></label> -->
+          <!-- <label for="subheading" class="form__label"></label>  -->
           <input type="text" class="popup__item popup__item_el_about" id="about" name="about"
             placeholder="Краткое описание" value="Исследователь океана" required>
           <!-- required -->
@@ -94,7 +94,8 @@
         <span class="popup popup_close"></span>
       </form>
     </section>
-    <script src="./scripts/index.js"></script>
+  </div>
+  <script src="./scripts/index.js"></script>
 </body>
 
 </html>

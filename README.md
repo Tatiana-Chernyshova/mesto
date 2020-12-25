@@ -16,6 +16,6 @@
 - JavaScript
 - работа с DOM интерфейсом
 
-[Проект на GitHub](https://vladimir-chernyshov.github.io/mesto/)
+[Проект на GitHub](https://vladimir-chernyshov.github.io/mesto/index.html)
 
 ![картинка Практикум](https://4.bp.blogspot.com/-B07LKQPM4Fo/UhpT7p-RjjI/AAAAAAAAPsM/wy8u4BQdU94/s400/imprimir+varias+fotos+en+una+sola+p%C3%A1gina.jpg "Mesto")
