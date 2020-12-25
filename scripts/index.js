@@ -1,6 +1,6 @@
 let editButton = document.querySelector('.profile__button_edit');
 let overlay = document.querySelector('.page__overlay');
-let closeButton = overlay.querySelector('.popup_close');
+let closeButton = overlay.querySelector('.popup__button_close');
 
 let togglePopup = () => {
   overlay.classList.toggle('page__overlay_active');
