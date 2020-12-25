@@ -14,7 +14,7 @@ overlay.addEventListener('click', (event) => {
   }
 });
 
-let form = overlay.querySelector('.popup__container');
+let form = overlay.querySelector('.popup');
 
 function handleFormSubmit (evt) {
   evt.preventDefault(); 
