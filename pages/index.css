@@ -1,0 +1,41 @@
+@import url(../vendor/normalize.css);
+
+@import url('../vendor/font.css');
+
+@import url('../blocks/page/page.css');
+@import url('../blocks/page/__container/page__container.css');
+
+@import url('../blocks/page/__header/page__header.css');
+@import url('../blocks/header/__link/header__link.css');
+@import url('../blocks/header/__logo/header__logo.css');
+@import url('../blocks/header/__line/header__line.css');
+
+@import url('../blocks/content/__profile/content__profile.css');
+@import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__info/profile__info.css');
+@import url('../blocks/profile/__name/profile__name.css');
+@import url('../blocks/profile/__about/profile__about.css');
+@import url('../blocks/profile/__button/profile__button_edit.css');
+@import url('../blocks/profile/__button/profile__button_add.css');
+
+@import url('../blocks/content/__elements/content__elements.css');
+@import url('../blocks/elements/__item/elements__item.css');
+@import url('../blocks/elements/__image/elements__image.css');
+@import url('../blocks/elements/__flex/elements__flex.css');
+@import url('../blocks/elements/__caption/elements__caption.css');
+@import url('../blocks/elements/__button/elements__button-like.css');
+@import url('../blocks/elements/__button/elements__button-like_active.css');
+
+@import url('../blocks/page/__footer/page__footer.css');
+@import url('../blocks/footer/__copyright/footer__copyright.css');
+
+@import url('../blocks/page/__overlay/page__overlay.css');
+@import url('../blocks/page/__overlay/page__overlay_active.css');
+@import url('../blocks/popup/__container/popup__container.css');
+@import url('../blocks/popup/_close/popup_close.css');
+@import url('../blocks/popup/__heading/popup__heading.css');
+@import url('../blocks/popup/__input-container/popup__input-container.css');
+@import url('../blocks/popup/__item/popup__item.css');
+@import url('../blocks/popup/__item/popup__item_el_name.css');
+@import url('../blocks/popup/__item/popup__item_el_about.css');
+@import url('../blocks/popup/__submit/popup__submit.css');
