@@ -1,8 +1,10 @@
 .elements__button-like {
+  background: rgba(255, 255, 255, 0);
+  border: 0;
   background-image: url("../../../images/like-button.svg");
   box-sizing: border-box;
-  width: 21px;
-  height: 19px;
+  min-width: 21px;
+  min-height: 19px;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -14,4 +16,6 @@
   cursor: pointer;
 }
 
-
+.elements__button-like:focus {
+  outline: none !important;
+}

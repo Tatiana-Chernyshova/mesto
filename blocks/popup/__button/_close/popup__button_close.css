@@ -1,10 +1,12 @@
 .popup__button_close {
+  border: 0;
+  background: rgba(255, 255, 255, 0);
   position: absolute;
   top: -48.28px;
   right: -48.28px;
   width: 56.56px;
   height: 56.56px;
-  background-image: url("../../../images/close-icon.svg");
+  background-image: url("../../../../images/close-icon.svg");
   cursor: pointer;
   background-repeat: no-repeat;
   background-position: center;
@@ -23,4 +25,8 @@
     height: 36.76px;
     background-size: 100%;
   }
+}
+
+.popup__button_close:focus {
+  outline: none !important;
 }
