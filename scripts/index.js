@@ -10,7 +10,8 @@ let likeButtons = document.querySelectorAll('.elements__button-like');
 
 let openPopup = () => { 
   overlay.classList.add('page__overlay_active'); 
-  handleFormSubmit();
+  nameInput.setAttribute('value',name.textContent);  
+  jobInput.setAttribute('value',job.textContent); 
 }; 
 
 let closePopup = () => { 
@@ -21,8 +22,6 @@ function handleFormSubmit (evt) {
   evt.preventDefault();  
   name.textContent = nameInput.value; 
   job.textContent = jobInput.value; 
-  nameInput.setAttribute('value',name.textContent);  
-  jobInput.setAttribute('value',job.textContent); 
   closePopup(); 
 } 
 
