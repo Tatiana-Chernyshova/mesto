@@ -114,7 +114,7 @@ function handleLike(evt) {
 };
 
 function handleLook(evt) {
-  let elementsCaption = evt.target.closest('.elements__item').querySelector('.elements__caption').textContent;
+  const elementsCaption = evt.target.closest('.elements__item').querySelector('.elements__caption').textContent;
   overlayLook.classList.add('page__overlay_active');
   overlayLook.querySelector('.popup__image').setAttribute('src', evt.target.getAttribute('src'));
   overlayLook.querySelector('.popup__image').setAttribute('alt', `Фото ${elementsCaption}`);
