@@ -28,55 +28,13 @@
         <button class="profile__button profile__button_add" type="button"></button>
       </section>
       <section class="elements content__elements">
-        <div class="elements__item">
-          <img src="./images/karachaevsk.jpg" alt="Фото Карачаевск" class="elements__image" />
-          <div class="elements__flex">
-            <h2 class="elements__caption">Карачаевск</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/elbrus.jpg" alt="Фото Гора Эльбрус" class="elements__image" />
-          <div class="elements__flex">
-            <h2 class="elements__caption">Гора Эльбрус</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/dombai.jpg" alt="Фото Домбай" class="elements__image" />
-          <div class="elements__flex">
-            <h2 class="elements__caption">Домбай</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/dombai.jpg" alt="Фото Домбай" class="elements__image" />
-          <div class="elements__flex">
-            <h2 class="elements__caption">Домбай</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/karachaevsk.jpg" alt="Фото Карачаевск" class="elements__image" />
-          <div class="elements__flex">
-            <h2 class="elements__caption">Карачаевск</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
-        <div class="elements__item">
-          <img src="./images/elbrus.jpg" alt="Фото Гора Эльбрус" class="elements__image" />
-          <div class="elements__flex">
-            <h2 class="elements__caption">Гора Эльбрус</h2>
-            <button class="elements__button-like" type="button"></button>
-          </div>
-        </div>
       </section>
     </main>
     <footer class="footer page__footer">
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
-    <section class="overlay page__overlay">
-      <form class="popup" name="popup">
+    <section class="overlay page__overlay page__overlay_type_edit">
+      <form class="popup popup_edit" name="popup">
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
           <!-- <label for="heading" class="form__label"></label> -->
@@ -91,6 +49,36 @@
         <button class="popup__button popup__button_close" type="button"></button>
       </form>
     </section>
+    <section class="overlay page__overlay page__overlay_type_add">
+      <form class="popup popup_add" name="popup">
+        <h2 class="popup__heading">Новое место</h2>
+        <fieldset class="popup__input-container">
+          <input type="text" class="popup__item popup__item_el_caption" id="caption" name="caption" placeholder="Название"
+            value="" required>
+          <input type="text" class="popup__item popup__item_el_image" id="image" name="image"
+            placeholder="Ссылка на картинку" value="" required>
+          <button type="submit" class="popup__submit">Создать</button>
+        </fieldset>
+        <button class="popup__button popup__button_close" type="button"></button>
+      </form>
+    </section>
+    <section class="overlay page__overlay page__overlay_type_look">
+      <figure class="popup__box">
+        <img src="" alt="" class="popup__image"/>
+        <figcaption class="popup__caption"></figcaption>
+        <button class="popup__button popup__button_close" type="button"></button>
+      </figure>
+    </section>
+    <template class="template">
+      <div class="elements__item">
+        <img src="" alt="Фото Гора Эльбрус" class="elements__image" />
+        <div class="elements__flex">
+          <h2 class="elements__caption"></h2>
+          <button class="elements__button-like" type="button"></button>
+        </div>
+        <button class="elements__button-delete" type="button"></button>
+      </div>
+    </template> 
   </div>
   <script src="./scripts/index.js"></script>
 </body>
