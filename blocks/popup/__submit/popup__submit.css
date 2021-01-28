@@ -8,10 +8,10 @@
   color: #ffffff;
   font-family: inherit;
   background-color: #000000;
+  transition: opacity 0.4s linear 0s;
 }
 
 .popup__submit:hover {
-  transition: opacity 0.4s linear 0s;
   opacity: 0.8;
 }
 

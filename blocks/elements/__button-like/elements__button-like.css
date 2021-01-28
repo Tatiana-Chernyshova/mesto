@@ -8,14 +8,10 @@
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
+  transition: opacity 0.4s linear 0s;
 }
 
 .elements__button-like:hover {
-  transition: opacity 0.4s linear 0s;
   opacity: 0.5;
   cursor: pointer;
-}
-
-.elements__button-like:focus {
-  outline: none !important;
 }
