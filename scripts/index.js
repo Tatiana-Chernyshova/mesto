@@ -17,29 +17,25 @@ const imageInput = overlayAdd.querySelector('.popup__item_el_image');
 const captionPopup = document.querySelector('.popup__caption');
 const imagePopup = document.querySelector('.popup__image');
 
-function openPopup (evt) {
-  evt.classList.add('page__overlay_active');
+function openPopup (popup) {
+  popup.classList.add('page__overlay_active');
 };
 
 function handleOpenPopupEdit () {
-  openPopup(overlayEdit);
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
+  openPopup(overlayEdit);
 };
 
-function handleOpenPopupAdd () {
-  openPopup(overlayAdd);
-};
-
-function handleCloses (evt) {
-  evt.target.closest('.page__overlay').classList.remove('page__overlay_active');
+function closePopup (popup) {
+  popup.classList.remove('page__overlay_active');
 };
 
 function handleFormSubmitEdit (evt) {
   evt.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
-  handleCloses(evt);
+  closePopup(overlayEdit);
 };
 
 function handleFormSubmitAdd (evt) {
@@ -51,7 +47,7 @@ function handleFormSubmitAdd (evt) {
   captionInput.value = '';
   imageInput.value = '';
   renderCardPrepend(myObject);
-  handleCloses(evt);
+  closePopup(overlayAdd);
 };
 
 function handleOverlaysItem (overlay) {
@@ -60,7 +56,7 @@ function handleOverlaysItem (overlay) {
 
 function handleOverlay (event) {
   if (event.target === event.currentTarget) { 
-    handleCloses(event);
+    closePopup(event.target);
   };
 };
 
@@ -71,9 +67,7 @@ function getCard (el) {
   htmlElement.querySelector('.elements__image').setAttribute('alt', el.name);
   htmlElement.querySelector('.elements__button-delete').addEventListener('click', handleDelete);
   htmlElement.querySelector('.elements__button-like').addEventListener('click', handleLike);
-  htmlElement.querySelector('.elements__image').addEventListener('click', function () {
-    handleLook(el);
-  });
+  htmlElement.querySelector('.elements__image').addEventListener('click', () => handleLook(el));
   return htmlElement;
 };
 
@@ -97,21 +91,20 @@ function handleLook(el) {
   imagePopup.setAttribute('src', el.link);
   imagePopup.setAttribute('alt', `Фото ${el.name}`);
   captionPopup.textContent = el.name;
-  overlayLook.querySelector('.popup__button').addEventListener('click', handleCloses);
+  overlayLook.querySelector('.popup__button').addEventListener('click', () => closePopup(overlayLook));
   openPopup(overlayLook);
 };
 
-overlays.forEach (evt => {
-  evt.querySelector('.popup__button').addEventListener('click', handleCloses);
-  handleOverlaysItem(evt);
+overlays.forEach (popup => {
+  popup.querySelector('.popup__button').addEventListener('click', () => closePopup(popup));
+  handleOverlaysItem(popup);
 });
 
 initialCards.forEach(card => {
-  getCard(card);
   renderCardAppend(card);
 });
 
-buttonAdd.addEventListener('click', handleOpenPopupAdd);
+buttonAdd.addEventListener('click', () => openPopup (overlayAdd));
 buttonEdit.addEventListener('click', handleOpenPopupEdit);
 formEdit.addEventListener('submit', handleFormSubmitEdit);
 formAdd.addEventListener('submit', handleFormSubmitAdd);
