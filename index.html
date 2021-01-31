@@ -38,6 +38,7 @@
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
           <!-- <label for="heading" class="form__label"></label> -->
+<!-- TODO: popup__input поменять item -->
           <input type="text" class="popup__item popup__item_el_name" id="name" name="name" placeholder="Ваше имя"
             value="Жак-Ив Кусто" required>
           <!-- <label for="subheading" class="form__label"></label> -->
@@ -53,9 +54,11 @@
       <form class="popup popup_type_form popup_do_add" name="popup">
         <h2 class="popup__heading">Новое место</h2>
         <fieldset class="popup__input-container">
-          <input type="text" class="popup__item popup__item_el_caption" id="caption" name="caption" placeholder="Название"
+<!-- TODO: popup__input поменять item -->
+          <input type="text" class="popup__input popup__item_el_caption" id="caption" name="caption" placeholder="Название"
             value="" required>
-          <input type="text" class="popup__item popup__item_el_image" id="image" name="image"
+          <span class="popup__input-error">Необходимо заполнить данное поле</span>
+          <input type="text" class="popup__input popup__item_el_image" id="image" name="image"
             placeholder="Ссылка на картинку" value="" required>
           <button type="submit" class="popup__submit" aria-label="Создать">Создать</button>
         </fieldset>
