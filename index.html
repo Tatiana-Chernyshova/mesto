@@ -34,32 +34,30 @@
       <p class="footer__copyright">&copy; 2020 Mesto Russia</p>
     </footer>
     <article class="overlay page__overlay page__overlay_type_edit">
-      <form class="popup popup_type_form popup_do_edit" name="popup">
+      <form class="popup popup_type_form popup_do_edit" name="popup" novalidate>
         <h2 class="popup__heading">Редактировать профиль</h2>
         <fieldset class="popup__input-container">
-          <!-- <label for="heading" class="form__label"></label> -->
-<!-- TODO: popup__input поменять item -->
-          <input type="text" class="popup__item popup__item_el_name" id="name" name="name" placeholder="Ваше имя"
-            value="Жак-Ив Кусто" required>
-          <!-- <label for="subheading" class="form__label"></label> -->
-          <input type="text" class="popup__item popup__item_el_about" id="about" name="about"
-            placeholder="Краткое описание" value="Исследователь океана" required>
-          <!-- required -->
+          <input type="text" class="popup__input popup__input_el_name" id="name-input" name="name" placeholder="Ваше имя"
+            value="" minlength="2" maxlength="40" required>
+          <span class="name-input-error popup__input-error"></span>
+          <input type="text" class="popup__input popup__input_el_about" id="about-input" name="about"
+            placeholder="Краткое описание" value="" minlength="2" maxlength="200" required>
+          <span class="about-input-error popup__input-error"></span>
           <button type="submit" class="popup__submit" aria-label="Сохранить">Сохранить</button>
         </fieldset>
         <button class="popup__button" type="button" aria-label="Закрыть"></button>
       </form>
     </article>
     <article class="overlay page__overlay page__overlay_type_add">
-      <form class="popup popup_type_form popup_do_add" name="popup">
+      <form class="popup popup_type_form popup_do_add" name="popup" novalidate>
         <h2 class="popup__heading">Новое место</h2>
         <fieldset class="popup__input-container">
-<!-- TODO: popup__input поменять item -->
-          <input type="text" class="popup__input popup__item_el_caption" id="caption" name="caption" placeholder="Название"
-            value="" required>
-          <span class="popup__input-error">Необходимо заполнить данное поле</span>
-          <input type="text" class="popup__input popup__item_el_image" id="image" name="image"
+          <input type="text" class="popup__input popup__input_el_caption" id="caption-input" name="caption" placeholder="Название"
+            value="" minlength="2" maxlength="30" required>
+          <span class="caption-input-error popup__input-error">Вы пропустили это поле.</span>
+          <input type="url" class="popup__input popup__input_el_image" id="image-input" name="image"
             placeholder="Ссылка на картинку" value="" required>
+          <span class="image-input-error popup__input-error"></span>
           <button type="submit" class="popup__submit" aria-label="Создать">Создать</button>
         </fieldset>
         <button class="popup__button" type="button" aria-label="Закрыть"></button>
@@ -86,6 +84,7 @@
     </template> 
   </div>
   <script src="./scripts/initial-cards.js"></script>
+  <script src="./scripts/validate.js"></script>
   <script src="./scripts/index.js"></script>
 </body>
 
