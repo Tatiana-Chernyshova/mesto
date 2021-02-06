@@ -19,17 +19,29 @@ const imagePopup = document.querySelector('.popup__image');
 const formElement = document.querySelector('.popup_type_form');
 
 function openPopup (popup) {
+  clearForm(popup);
   popup.classList.add('page__overlay_active');
-};
-
-function handleOpenPopupEdit () {
-  nameInput.value = name.textContent;
-  jobInput.value = job.textContent;
-  openPopup(overlayEdit);
 };
 
 function closePopup (popup) {
   popup.classList.remove('page__overlay_active');
+};
+
+function handleFormSubmitAdd (evt) {
+  const myObject = {
+    name: captionInput.value,
+    link: imageInput.value};
+  getCard(myObject);
+  captionInput.value = '';
+  imageInput.value = '';
+  renderCardPrepend(myObject);
+  closePopup(overlayAdd);
+};
+
+function handleFormSubmitEdit (evt) {
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
+  closePopup(overlayEdit);
 };
 
 function handleOverlaysItem (overlay) {
@@ -77,6 +89,27 @@ function handleLook(el) {
   openPopup(overlayLook);
 };
 
+function clearForm (overlay) { 
+  const inputList = Array.from(overlay.querySelectorAll('.popup__input')); 
+  const formElement = overlay.querySelector('.popup');
+  const buttonElement = overlay.querySelector('.popup__submit');
+  const object = {
+    inputErrorClass: 'popup__input_type_error',
+    inputErrorClassActive: 'popup__input-error_active'
+};
+  inputList.forEach ((inputItem) => {
+    inputItem.value = '';
+    nameInput.value = name.textContent;
+    jobInput.value = job.textContent;
+  hideInputError(formElement, inputItem, object);
+  buttonElement.classList.add('popup__submit_inactive');
+  formElement.removeEventListener('submit', handleFormSubmit);
+  formElement.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+  });
+  });
+};
+
 overlays.forEach (popup => {
   popup.querySelector('.popup__button').addEventListener('click', () => closePopup(popup));
   handleOverlaysItem(popup);
@@ -87,4 +120,4 @@ initialCards.forEach(card => {
 });
 
 buttonAdd.addEventListener('click', () => openPopup (overlayAdd));
-buttonEdit.addEventListener('click', handleOpenPopupEdit);
+buttonEdit.addEventListener('click', () => openPopup (overlayEdit));
