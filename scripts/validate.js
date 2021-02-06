@@ -61,10 +61,10 @@ const hasInvalidInput = (inputList) => {
 const toggleButtonState = (inputList, buttonElement, formElement, obj) => {
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add(obj.inactiveButtonClass);
-    removeSubmit();
+    buttonElement.disabled = true;
   } else {
     buttonElement.classList.remove(obj.inactiveButtonClass);
-    addSubmit();
+    buttonElement.disabled = false;
   };
 };
 
@@ -74,12 +74,11 @@ function clearForm (overlay, obj) {
   const buttonElement = overlay.querySelector(obj.submitButtonSelector);
   inputList.forEach ((inputItem) => {
     inputItem.value = '';
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
     hideInputError(formElement, inputItem, obj);
     buttonElement.classList.add(obj.inactiveButtonClass);
   });
-  removeSubmit();
+  buttonElement.disabled = true;
+  openPopup(overlay);
 }
 
 enableValidation(selectors); 

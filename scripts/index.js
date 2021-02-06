@@ -19,9 +19,14 @@ const imagePopup = document.querySelector('.popup__image');
 const formElement = document.querySelector('.popup_type_form');
 
 function openPopup (popup) {
-  clearForm(popup, selectors);
   document.addEventListener('keydown', (evt) => {handleEsc(evt, popup)});
   popup.classList.add('page__overlay_active');
+}
+
+function openPopupEdit () {
+  clearForm(overlayEdit, selectors);
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
 }
 
 function closePopup (popup) {
@@ -100,16 +105,6 @@ function handleEsc (evt, formElement) {
   }
 }
 
-function addSubmit () {
-  formEdit.addEventListener('submit', handleFormSubmitEdit);
-  formAdd.addEventListener('submit', handleFormSubmitAdd);
-}
-
-function removeSubmit () {
-  formEdit.removeEventListener('submit', handleFormSubmitEdit);
-  formAdd.removeEventListener('submit', handleFormSubmitAdd);
-}
-
 overlays.forEach (popup => {
   popup.querySelector('.popup__button_close').addEventListener('click', () => closePopup(popup));
   handleOverlaysItem(popup);
@@ -119,5 +114,7 @@ initialCards.forEach(card => {
   renderCardAppend(card);
 });
 
-buttonAdd.addEventListener('click', () => openPopup (overlayAdd));
-buttonEdit.addEventListener('click', () => openPopup (overlayEdit));
+buttonAdd.addEventListener('click', () => clearForm(overlayAdd, selectors));
+buttonEdit.addEventListener('click', openPopupEdit);
+formEdit.addEventListener('submit', handleFormSubmitEdit);
+formAdd.addEventListener('submit', handleFormSubmitAdd);
