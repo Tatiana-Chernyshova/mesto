@@ -1,3 +1,7 @@
+import { initialCards, selectors } from './data.js';
+import { Card } from './Card.js';
+import FormValidator from './FormValidator.js';
+
 const overlays = document.querySelectorAll('.page__overlay');
 const overlayLook = document.querySelector('.page__overlay_type_look');
 const overlayAdd = document.querySelector('.page__overlay_type_add');
@@ -10,23 +14,12 @@ const job = document.querySelector('.profile__about');
 const formEdit = document.querySelector('.popup_do_edit');
 const formAdd = document.querySelector('.popup_do_add');
 const buttonAdd = document.querySelector('.profile__button_add');
-const template = document.querySelector('.template');
-const contentElements = document.querySelector('.content__elements');
 const captionInput = overlayAdd.querySelector('.popup__input_el_caption');
 const imageInput = overlayAdd.querySelector('.popup__input_el_image');
-const captionPopup = document.querySelector('.popup__caption');
-const imagePopup = document.querySelector('.popup__image');
-const formElement = document.querySelector('.popup_type_form');
 
 function openPopup (popup) {
   document.addEventListener('keydown', (evt) => {handleEsc(evt, popup)});
   popup.classList.add('page__overlay_active');
-}
-
-function openPopupEdit () {
-  clearForm(overlayEdit, selectors);
-  nameInput.value = name.textContent;
-  jobInput.value = job.textContent;
 }
 
 function closePopup (popup) {
@@ -34,21 +27,10 @@ function closePopup (popup) {
   popup.classList.remove('page__overlay_active');
 }
 
-function handleFormSubmitAdd (evt) {
-  const myObject = {
-    name: captionInput.value,
-    link: imageInput.value};
-  getCard(myObject);
-  captionInput.value = '';
-  imageInput.value = '';
-  renderCardPrepend(myObject);
-  closePopup(overlayAdd);
-}
-
-function handleFormSubmitEdit (evt) {
-  name.textContent = nameInput.value;
-  job.textContent = jobInput.value;
-  closePopup(overlayEdit);
+function handleEsc (evt, formElement) {
+  if (evt.key === 'Escape') {
+    closePopup(formElement);
+  }
 }
 
 function handleOverlaysItem (overlay) {
@@ -61,48 +43,38 @@ function handleOverlay (event) {
   };
 }
 
-function getCard (el) {
-  const htmlElement = template.content.cloneNode(true);
-  const elementsCaption = htmlElement.querySelector('.elements__caption');
-  const elementsImage = htmlElement.querySelector('.elements__image');
-  const elementsButtonDelete = htmlElement.querySelector('.elements__button-delete');
-  const elementsButtonLike = htmlElement.querySelector('.elements__button-like');
-  elementsCaption.innerText = el.name;
-  elementsImage.setAttribute('src', el.link);
-  elementsImage.setAttribute('alt', el.name);
-  elementsButtonDelete.addEventListener('click', handleDelete);
-  elementsButtonLike.addEventListener('click', handleLike);
-  elementsImage.addEventListener('click', () => handleLook(el));
-  return htmlElement;
+function openPopupAdd () {
+  const formValidator = new FormValidator(selectors, '.popup_do_add');
+  const validation = formValidator.enableValidation();
+  const clear = formValidator.clearForm(overlayAdd);
+  openPopup(overlayAdd);
 }
 
-function renderCardAppend (card) {
-  contentElements.append(getCard(card));
+function openPopupEdit () {
+  const formValidator = new FormValidator(selectors, '.popup_do_edit');
+  const validation = formValidator.enableValidation();
+  const clear = formValidator.clearForm(overlayEdit);
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
+  openPopup(overlayEdit);
 }
 
-function renderCardPrepend (card) {
-  contentElements.prepend(getCard(card));
+function handleFormSubmitEdit (evt) {
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
+  closePopup(overlayEdit);
 }
 
-function handleDelete(evt) {
-  evt.target.closest('.elements__item').remove();
-}
-
-function handleLike(evt) {
-  evt.target.classList.toggle('elements__button-like_active');
-}
-
-function handleLook(el) {
-  imagePopup.setAttribute('src', el.link);
-  imagePopup.setAttribute('alt', `Фото ${el.name}`);
-  captionPopup.textContent = el.name;
-  openPopup(overlayLook);
-}
-
-function handleEsc (evt, formElement) {
-  if (evt.key === 'Escape') {
-    closePopup(formElement);
-  }
+function handleFormSubmitAdd (evt) {
+  const myObject = {
+    name: captionInput.value,
+    link: imageInput.value};
+  captionInput.value = '';
+  imageInput.value = '';
+  const card = new Card(myObject, '.elements__item');
+  const cardElement = card.generateCard();
+  document.querySelector('.content__elements').prepend(cardElement);
+  closePopup(overlayAdd);
 }
 
 overlays.forEach (popup => {
@@ -110,11 +82,15 @@ overlays.forEach (popup => {
   handleOverlaysItem(popup);
 });
 
-initialCards.forEach(card => {
-  renderCardAppend(card);
+initialCards.forEach((item) => {
+  const card = new Card(item, '.elements__item');
+  const cardElement = card.generateCard();
+  document.querySelector('.content__elements').append(cardElement);
 });
 
-buttonAdd.addEventListener('click', () => clearForm(overlayAdd, selectors));
+buttonAdd.addEventListener('click', openPopupAdd);
 buttonEdit.addEventListener('click', openPopupEdit);
 formEdit.addEventListener('submit', handleFormSubmitEdit);
 formAdd.addEventListener('submit', handleFormSubmitAdd);
+
+export { openPopup, overlayLook };
