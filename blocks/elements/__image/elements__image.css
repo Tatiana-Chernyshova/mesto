@@ -1,8 +1,13 @@
 .elements__image {
-  /* width: 100%;*/
   background-size: cover;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
   width: 282px;
   height: 282px;
+  transition: opacity 0.4s linear 0s;
+}
+
+.elements__image:hover {
+  opacity: 0.5;
+  cursor: pointer;
 }

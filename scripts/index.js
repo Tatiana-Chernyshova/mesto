@@ -1,32 +1,7 @@
+import { initialCards } from './validate.js';
+import { openPopup, closePopup } from './utils.js';
 import { Card } from './Card.js';
 import FormValidator from './FormValidator.js';
-
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  },
-];
 
 const selectors = {
   formSelector: '.popup',
@@ -38,7 +13,6 @@ const selectors = {
 };
 
 const overlays = document.querySelectorAll('.page__overlay');
-const overlayLook = document.querySelector('.page__overlay_type_look');
 const overlayAdd = document.querySelector('.page__overlay_type_add');
 const overlayEdit = document.querySelector('.page__overlay_type_edit');
 const buttonEdit = document.querySelector('.profile__button_edit');
@@ -51,25 +25,12 @@ const formAdd = document.querySelector('.popup_do_add');
 const buttonAdd = document.querySelector('.profile__button_add');
 const captionInput = overlayAdd.querySelector('.popup__input_el_caption');
 const imageInput = overlayAdd.querySelector('.popup__input_el_image');
-
-function openPopup (popup) {
-  document.addEventListener('keydown', (evt) => {handleEsc(evt, popup)});
-  popup.classList.add('page__overlay_active');
-}
-
-function closePopup (popup) {
-  document.removeEventListener('keydown', handleEsc);
-  popup.classList.remove('page__overlay_active');
-}
-
-function handleEsc (evt, formElement) {
-  if (evt.key === 'Escape') {
-    closePopup(formElement);
-  }
-}
+const formValidatorAdd = new FormValidator(selectors, '.popup_do_add');
+const formValidatorEdit = new FormValidator(selectors, '.popup_do_edit');
+const contentElements = document.querySelector('.content__elements')
 
 function handleOverlaysItem (overlay) {
-  overlay.addEventListener('click', handleOverlay);
+  overlay.addEventListener('mousedown', handleOverlay);
 }
 
 function handleOverlay (event) {
@@ -79,16 +40,14 @@ function handleOverlay (event) {
 }
 
 function openPopupAdd () {
-  const formValidator = new FormValidator(selectors, '.popup_do_add');
-  const validation = formValidator.enableValidation();
-  const clear = formValidator.clearForm(overlayAdd);
+  const validation = formValidatorAdd.enableValidation();
+  formValidatorAdd.clearForm(overlayAdd);
   openPopup(overlayAdd);
 }
 
 function openPopupEdit () {
-  const formValidator = new FormValidator(selectors, '.popup_do_edit');
-  const validation = formValidator.enableValidation();
-  const clear = formValidator.clearForm(overlayEdit);
+  const validation = formValidatorEdit.enableValidation();
+  formValidatorEdit.clearForm(overlayEdit);
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
   openPopup(overlayEdit);
@@ -106,9 +65,9 @@ function handleFormSubmitAdd (evt) {
     link: imageInput.value};
   captionInput.value = '';
   imageInput.value = '';
-  const card = new Card(myObject, '.elements__item');
+  const card = new Card(myObject, '.template');
   const cardElement = card.generateCard();
-  document.querySelector('.content__elements').prepend(cardElement);
+  contentElements.prepend(cardElement);
   closePopup(overlayAdd);
 }
 
@@ -118,9 +77,9 @@ overlays.forEach (popup => {
 });
 
 initialCards.forEach((item) => {
-  const card = new Card(item, '.elements__item');
+  const card = new Card(item, '.template');
   const cardElement = card.generateCard();
-  document.querySelector('.content__elements').append(cardElement);
+  contentElements.append(cardElement);
 });
 
 buttonAdd.addEventListener('click', openPopupAdd);
@@ -128,4 +87,4 @@ buttonEdit.addEventListener('click', openPopupEdit);
 formEdit.addEventListener('submit', handleFormSubmitEdit);
 formAdd.addEventListener('submit', handleFormSubmitAdd);
 
-export { openPopup, overlayLook };
+// export { openPopup, overlayLook };

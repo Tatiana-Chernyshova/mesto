@@ -1,23 +1,23 @@
-import { openPopup, overlayLook } from './index.js';
+import { overlayLook, openPopup, } from './utils.js';
 
 class Card {
-  constructor (data, cardSelector) {
+  constructor (data, templateSelector) {
     this._name = data.name;
     this._link = data.link;
-    this._cardSelector = cardSelector;
+    this._templateSelector = templateSelector;
   }
   _getInfo() {
     return {
       name: this._name,
       Link: this._link,
-      selector: this._cardSelector,
+      // selector: this._templateSelector,
     }
   }
   _getTemplate() {
       const cardElement = document
-      .querySelector('.template')
+      .querySelector(this._templateSelector)
       .content
-      .querySelector(this._cardSelector)
+      .querySelector('.elements__item')
       .cloneNode(true);
       return cardElement;
   }
@@ -41,12 +41,16 @@ class Card {
     this._element.querySelector('.elements__image').addEventListener('click', () => {
       this._handleLook();
     });
-  }
+    this._element.querySelector('.elements__image').removeEventListener('click', () => {
+      this._handleLook();
+    });
+}
   _handleLike(evt) {
     this._element.querySelector('.elements__button-like').classList.toggle('elements__button-like_active')
   }
   _handleDelete() {
     this._element.closest('.elements__item').remove();
+    this._element = '';
   }
   _handleLook() {
     const _imagePopup = document.querySelector('.popup__image');
