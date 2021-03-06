@@ -1,4 +1,4 @@
-import { overlayLook, openPopup, } from './utils.js';
+import { overlayLook, openPopup, imagePopup, captionPopup } from './utils.js';
 
 class Card {
   constructor (data, templateSelector) {
@@ -10,7 +10,6 @@ class Card {
     return {
       name: this._name,
       Link: this._link,
-      // selector: this._templateSelector,
     }
   }
   _getTemplate() {
@@ -41,23 +40,18 @@ class Card {
     this._element.querySelector('.elements__image').addEventListener('click', () => {
       this._handleLook();
     });
-    this._element.querySelector('.elements__image').removeEventListener('click', () => {
-      this._handleLook();
-    });
 }
   _handleLike(evt) {
     this._element.querySelector('.elements__button-like').classList.toggle('elements__button-like_active')
   }
   _handleDelete() {
-    this._element.closest('.elements__item').remove();
-    this._element = '';
+    this._element.remove();
+    this._element = null;
   }
   _handleLook() {
-    const _imagePopup = document.querySelector('.popup__image');
-    const _captionPopup = document.querySelector('.popup__caption');
-    _imagePopup.setAttribute('src', this._link);
-    _imagePopup.setAttribute('alt', `Фото ${this._name}`);
-    _captionPopup.textContent = this._name;
+    imagePopup.setAttribute('src', this._link);
+    imagePopup.setAttribute('alt', `Фото ${this._name}`);
+    captionPopup.textContent = this._name;
     openPopup(overlayLook);
   }
 }

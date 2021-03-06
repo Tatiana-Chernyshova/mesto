@@ -40,13 +40,11 @@ function handleOverlay (event) {
 }
 
 function openPopupAdd () {
-  const validation = formValidatorAdd.enableValidation();
   formValidatorAdd.clearForm(overlayAdd);
   openPopup(overlayAdd);
 }
 
 function openPopupEdit () {
-  const validation = formValidatorEdit.enableValidation();
   formValidatorEdit.clearForm(overlayEdit);
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
@@ -82,9 +80,10 @@ initialCards.forEach((item) => {
   contentElements.append(cardElement);
 });
 
+formValidatorAdd.enableValidation();
+formValidatorEdit.enableValidation();
+
 buttonAdd.addEventListener('click', openPopupAdd);
 buttonEdit.addEventListener('click', openPopupEdit);
 formEdit.addEventListener('submit', handleFormSubmitEdit);
 formAdd.addEventListener('submit', handleFormSubmitAdd);
-
-// export { openPopup, overlayLook };
