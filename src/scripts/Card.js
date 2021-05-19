@@ -1,10 +1,9 @@
-import { overlayLook, openPopup, imagePopup, captionPopup } from './utils.js';
-
 class Card {
-  constructor (data, templateSelector) {
-    this._name = data.name;
-    this._link = data.link;
+  constructor ({name, link}, templateSelector, handleCardClick) {
+    this._name = name;
+    this._link = link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
   _getInfo() {
     return {
@@ -38,7 +37,7 @@ class Card {
       this._handleLike();
     });
     this._element.querySelector('.elements__image').addEventListener('click', () => {
-      this._handleLook();
+      this._handleCardClick(this._link, this._name);
     });
 }
   _handleLike(evt) {
@@ -47,12 +46,6 @@ class Card {
   _handleDelete() {
     this._element.remove();
     this._element = null;
-  }
-  _handleLook() {
-    imagePopup.setAttribute('src', this._link);
-    imagePopup.setAttribute('alt', `Фото ${this._name}`);
-    captionPopup.textContent = this._name;
-    openPopup(overlayLook);
   }
 }
 
