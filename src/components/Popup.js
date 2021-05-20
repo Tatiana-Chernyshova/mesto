@@ -1,4 +1,4 @@
-import { escCode } from './utils.js';
+import { escCode } from '../utils/constants.js';
 
 export default class Popup {
 	constructor(popupSelector) {

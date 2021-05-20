@@ -1,14 +1,12 @@
 import '../pages/index.css';
 
-import { initialCards } from './validate.js';
-import { buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput } from './utils.js';
-import { Card } from './Card.js';
-import FormValidator from './FormValidator.js';
-import Section from './Section.js';
-import Popup from './Popup.js';
-import PopupWithImage from './PopupWithImage.js';
-import PopupWithForm from './PopupWithForm.js';
-import UserInfo from './UserInfo.js';
+import { initialCards, buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput } from '../utils/constants.js';
+import { Card } from '../components/Card.js';
+import FormValidator from '../components/FormValidator.js';
+import Section from '../components/Section.js';
+import PopupWithImage from '../components/PopupWithImage.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import UserInfo from '../components/UserInfo.js';
 
 const formValidatorAdd = new FormValidator(selectors, '.popup_do_add');
 const formValidatorEdit = new FormValidator(selectors, '.popup_do_edit');
@@ -20,8 +18,7 @@ const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.p
 const cardList = new Section({
   data: initialCards,
   renderer: (item) => {
-    const card = new Card(item, '.template', cardImageClickHandler);
-    const cardElement = card.generateCard();
+    const cardElement = generateNewCard(item);
     cardList.addItem(cardElement);
   }
 }, contentElements);
@@ -33,19 +30,25 @@ editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
 cardList.renderItems();
 
+function generateNewCard(data) {
+  const card = new Card(data, '.template', cardImageClickHandler);
+  const cardElement = card.generateCard();
+  return cardElement;
+}
+
 function cardImageClickHandler(url, text) {
   popupWithImage.open(url, text);
 }
 
 function addCardSubmitHandler(data) {
-  const card = new Card(data, '.template', cardImageClickHandler);
-  const cardElement = card.generateCard();
+  const cardElement = generateNewCard(data);
   cardList.prependItem(cardElement);
   this.close();
 }
 
 function editProfileSubmitHandler(data) {
   userInfo.setUserInfo(data);
+  this.close();
 }
 
 buttonAdd.addEventListener('click', () => {
