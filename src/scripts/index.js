@@ -1,19 +1,21 @@
 import '../pages/index.css';
 
 import { initialCards } from './validate.js';
-import { buttonEdit, name, job, buttonAdd, contentElements, selectors } from './utils.js';
+import { buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput } from './utils.js';
 import { Card } from './Card.js';
 import FormValidator from './FormValidator.js';
 import Section from './Section.js';
 import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
 import PopupWithForm from './PopupWithForm.js';
+import UserInfo from './UserInfo.js';
 
 const formValidatorAdd = new FormValidator(selectors, '.popup_do_add');
 const formValidatorEdit = new FormValidator(selectors, '.popup_do_edit');
 const editProfilePopup = new PopupWithForm('.page__overlay_type_edit', editProfileSubmitHandler);
 const addCardPopup = new PopupWithForm('.page__overlay_type_add', addCardSubmitHandler);
 const popupWithImage = new PopupWithImage('.page__overlay_type_look');
+const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.profile__about' });
 
 const cardList = new Section({
   data: initialCards,
@@ -42,10 +44,8 @@ function addCardSubmitHandler(data) {
   this.close();
 }
 
-function editProfileSubmitHandler({myname, about}) {
-  name.textContent = myname;
-  job.textContent = about;
-  this.close();
+function editProfileSubmitHandler(data) {
+  userInfo.setUserInfo(data);
 }
 
 buttonAdd.addEventListener('click', () => {
@@ -55,5 +55,8 @@ buttonAdd.addEventListener('click', () => {
 
 buttonEdit.addEventListener('click', () => {
   formValidatorEdit.clearForm();
+  const realInfo = userInfo.getUserInfo();
+  nameInput.value = realInfo.myname;
+  aboutInput.value = realInfo.about;
   editProfilePopup.open()
 })

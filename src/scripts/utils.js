@@ -1,7 +1,7 @@
 const escCode = 'Escape';
 const buttonEdit = document.querySelector('.profile__button_edit');
-const name = document.querySelector('.profile__name');
-const job = document.querySelector('.profile__about');
+const nameInput = document.querySelector('.popup__input_el_name');
+const aboutInput = document.querySelector('.popup__input_el_about');
 const buttonAdd = document.querySelector('.profile__button_add');
 const contentElements = '.content__elements';
 
@@ -14,4 +14,4 @@ const selectors = {
   inputErrorClassActive: 'popup__input-error_active',
 };
 
-export { escCode, buttonEdit, name, job, buttonAdd, contentElements, selectors };
+export { escCode, buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput };
