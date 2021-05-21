@@ -5,12 +5,6 @@ class Card {
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
   }
-  _getInfo() {
-    return {
-      name: this._name,
-      Link: this._link,
-    }
-  }
   _getTemplate() {
       const cardElement = document
       .querySelector(this._templateSelector)
