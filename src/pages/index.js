@@ -9,12 +9,12 @@ import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/API.js';
 
-const formValidatorAdd = new FormValidator(selectors, '.popup_do_add');
+// const formValidatorAdd = new FormValidator(selectors, '.popup_do_add');
 const formValidatorEdit = new FormValidator(selectors, '.popup_do_edit');
 const editProfilePopup = new PopupWithForm('.page__overlay_type_edit', editProfileSubmitHandler);
 const addCardPopup = new PopupWithForm('.page__overlay_type_add', addCardSubmitHandler);
 const popupWithImage = new PopupWithImage('.page__overlay_type_look');
-const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.profile__about' });
+const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.profile__about', userID: 'userID' });
 // const deleteCardPopup = new PopupWithForm('.page__overlay_type_delete', deleteCardSubmitHandler);
 
 // const cardList = new Section({
@@ -28,65 +28,50 @@ const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.p
 
 let user = null;
 
+// const api = new Api({
+//   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
+//   headers: {
+//     authorization: '36ca9ef1-bd1d-492c-84aa-4de20805470a',
+//     'Content-Type': 'application/json'
+//   }
+// }); 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
-  headers: {
-    authorization: '36ca9ef1-bd1d-492c-84aa-4de20805470a',
-    'Content-Type': 'application/json'
-  }
+    address: 'https://mesto.nomoreparties.co/v1/cohort-24',
+    token: '36ca9ef1-bd1d-492c-84aa-4de20805470a'
 }); 
 
 
 
-function generateNewCard(data) {
-  const card = new Card(data.name, data.link, '.template', cardImageClickHandler);
-  const cardElement = card.generateCard();
-  // card.show();
-  return cardElement;
-}
+// function generateNewCard(data) {
+//   const card = new Card(data.name, data.link, '.template', cardImageClickHandler);
+//   const cardElement = card.generateCard();
+//   // card.show();
+//   return cardElement;
+// }
 
-function generate(data) {
-  const cardList = new Section({
-    data: data,
-    renderer: (item) => {
-      const cardElement = generateNewCard(item);
-      // console.log(item._id);
-      cardList.addItem(cardElement);
-    }
-  }, contentElements);
-  cardList.renderItems();
-}
+// function generate(data) {
+//   const cardList = new Section({
+//     data: data,
+//     renderer: (item) => {
+//       const cardElement = generateNewCard(item);
+//       // console.log(item._id);
+//       cardList.addItem(cardElement);
+//     }
+//   }, contentElements);
+//   cardList.renderItems();
+// }
 
-// api.getUserData()
-// .then (userData => {
-//   // console.log(userData)
-//   user = userData.data
-//   // console.log(user)
-// })
-// .catch(e => console.log(`Error: ${e}`))
 
-// api.getInitialCards()
-//   .then((arr) => {
-//     // console.log(arr);
-//     // cardList.renderItems()
-//     generate(arr);
-//       // api.deleteCard(data);
 
-//     // arr.forEach(item => {
-//     //   const cardElement = generateNewCard(item);
-//     //   cardList.prependItem(cardElement);
-//     // })
+// Promise.all([api.getUserData(), api.getInitialCards])
+//   .then(([userData, card]) => {
+//     console.log(userData);
+//     console.log(card)
+//     user = userData.data;
+//     cardList.renderItems();
 //   })
 
-Promise.all([api.getUserData(), api.getInitialCards])
-  .then(([userData, card]) => {
-    console.log(userData);
-    console.log(card)
-    user = userData.data;
-    cardList.renderItems();
-  })
-
-formValidatorAdd.enableValidation();
+// formValidatorAdd.enableValidation();
 formValidatorEdit.enableValidation();
 popupWithImage.setEventListeners();
 editProfilePopup.setEventListeners();
@@ -107,7 +92,7 @@ function cardImageClickHandler(url, text) {
 }
 
 function addCardSubmitHandler(data) {
-  api.addCard(data);
+  // api.addCard(data);
   // api.deleteCard(data);
 // console.log(data);
   // api.deleteCard(data);
@@ -142,3 +127,88 @@ buttonEdit.addEventListener('click', () => {
   editProfilePopup.open()
 })
 
+// api.getUserData()
+// .then (userData => {
+//   // console.log(userData)
+//   user = userData.data
+//   // console.log(user)
+// })
+// .catch(e => console.log(`Error: ${e}`))
+
+// api.getInitialCards()
+//   .then((arr) => {
+//     // console.log(arr);
+//     // cardList.renderItems()
+//     generate(arr);
+//       // api.deleteCard(data);
+
+//     // arr.forEach(item => {
+//     //   const cardElement = generateNewCard(item);
+//     //   cardList.prependItem(cardElement);
+//     // })
+//   })
+
+
+
+//   const cardList = new Section({
+//     renderer: (data) => {
+//         messagesList.addItem(createMessage(data));
+//     }
+// }, messagesWrap
+// );
+
+const cardList = new Section({
+  // data: initialCards,
+  // data: {},
+  renderer: (item) => {
+    const cardElement = generateNewCard(item);
+    // console.log(cardElement);
+    cardList.addItem(cardElement);
+  }
+}, contentElements);
+
+function generateNewCard(data) {
+  const card = new Card(data.name, data.link, '.template', cardImageClickHandler);
+  const cardElement = card.generateCard();
+  // card.show();
+  return cardElement;
+}
+
+// api.getCards()
+//   .then(res => {
+//     // console.log(res);
+//     cardList.renderItems(res);
+//   })
+//   .catch(e => console.log(`Ошибка при получении картинок: ${e}`))
+
+// api.getUserData()
+//   .then(res => {
+//     console.log(res);
+//     user = res;
+//     console.log(user);
+//     // cardList.renderItems(res);
+//   })
+//   .catch(e => console.log(`Ошибка при получении данных пользователя: ${e}`))
+
+const formValidatorAdd = new FormValidator(selectors, '.popup_do_add'); 
+
+
+Promise.all([api.getUserData(), api.getCards()])
+  .then(([userData, card]) => {
+    // console.log(userData);
+    // console.log(card)
+    // user = userData.data;
+    // cardList.renderItems();
+    user = userData;
+    userInfo.setUser({
+      user: user.name,
+      userID: user._id
+    })
+    // console.log(user);
+    // console.log(card);
+    cardList.renderItems(card);
+    
+  })
+
+
+  // let user = null;

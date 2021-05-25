@@ -18,10 +18,10 @@ class Card {
   //   this._handleCardClick = handleCardClick;
   // }
 
-  show() {
-    console.log(this._name);
-    console.log(this._link);
-  }
+  // show() {
+  //   console.log(this._name);
+  //   console.log(this._link);
+  // }
   _getTemplate() {
       const cardElement = document
       .querySelector(this._templateSelector)
