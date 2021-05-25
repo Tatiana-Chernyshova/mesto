@@ -1,0 +1,14 @@
+.elements__number {
+  margin: 0;
+  padding: 3px 0;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #000000;
+  /* text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden; */
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+}

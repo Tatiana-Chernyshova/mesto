@@ -5,6 +5,8 @@
   width: 282px;
   height: 282px;
   transition: opacity 0.4s linear 0s;
+  width: 100%;
+  object-fit: cover;
 }
 
 .elements__image:hover {

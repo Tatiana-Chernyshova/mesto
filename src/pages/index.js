@@ -7,6 +7,7 @@ import Section from '../components/Section.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/API.js';
 
 const formValidatorAdd = new FormValidator(selectors, '.popup_do_add');
 const formValidatorEdit = new FormValidator(selectors, '.popup_do_edit');
@@ -15,34 +16,80 @@ const addCardPopup = new PopupWithForm('.page__overlay_type_add', addCardSubmitH
 const popupWithImage = new PopupWithImage('.page__overlay_type_look');
 const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.profile__about' });
 
-const cardList = new Section({
-  data: initialCards,
-  renderer: (item) => {
-    const cardElement = generateNewCard(item);
-    cardList.addItem(cardElement);
+// const cardList = new Section({
+//   // data: initialCards,
+//   data: {},
+//   renderer: (item) => {
+//     const cardElement = generateNewCard(item);
+//     cardList.addItem(cardElement);
+//   }
+// }, contentElements);
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
+  headers: {
+    authorization: '36ca9ef1-bd1d-492c-84aa-4de20805470a',
+    'Content-Type': 'application/json'
   }
-}, contentElements);
+}); 
+
+
+function generateNewCard(data) {
+  const card = new Card(data.name, data.link, '.template', cardImageClickHandler);
+  const cardElement = card.generateCard();
+  // card.show();
+  return cardElement;
+}
+
+function generate(data) {
+  const cardList = new Section({
+    data: data,
+    renderer: (item) => {
+      const cardElement = generateNewCard(item);
+      cardList.addItem(cardElement);
+    }
+  }, contentElements);
+  cardList.renderItems();
+}
+
+
+api.getInitialCards()
+  .then((arr) => {
+    // console.log(arr);
+    // cardList.renderItems()
+    generate(arr);
+    // arr.forEach(item => {
+    //   const cardElement = generateNewCard(item);
+    //   cardList.prependItem(cardElement);
+    // })
+  })
+
+
 
 formValidatorAdd.enableValidation();
 formValidatorEdit.enableValidation();
 popupWithImage.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
-cardList.renderItems();
+// cardList.renderItems();
 
-function generateNewCard(data) {
-  const card = new Card(data, '.template', cardImageClickHandler);
-  const cardElement = card.generateCard();
-  return cardElement;
-}
+// function generateNewCard(data) {
+//   const card = new Card(data, '.template', cardImageClickHandler);
+//   const cardElement = card.generateCard();
+//   // card.show();
+//   return cardElement;
+// }
+
 
 function cardImageClickHandler(url, text) {
   popupWithImage.open(url, text);
 }
 
 function addCardSubmitHandler(data) {
-  const cardElement = generateNewCard(data);
-  cardList.prependItem(cardElement);
+  api.addCard(data);
+  // api.deleteCard(data);
+  // const cardElement = generateNewCard(data);
+  // cardList.prependItem(cardElement);
   this.close();
 }
 
@@ -63,3 +110,4 @@ buttonEdit.addEventListener('click', () => {
   aboutInput.value = realInfo.about;
   editProfilePopup.open()
 })
+

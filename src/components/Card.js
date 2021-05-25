@@ -1,9 +1,26 @@
 class Card {
-  constructor ({name, link}, templateSelector, handleCardClick) {
+  constructor (name, link, templateSelector, handleCardClick) {
     this._name = name;
     this._link = link;
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
+  }
+  // constructor ({name, link}, templateSelector, handleCardClick) {
+  //   this._name = name;
+  //   this._link = link;
+  //   this._templateSelector = templateSelector;
+  //   this._handleCardClick = handleCardClick;
+  // }
+  // constructor ({ data }, templateSelector, handleCardClick) {
+  //   this._name = data.name;
+  //   this._link = data.link;
+  //   this._templateSelector = templateSelector;
+  //   this._handleCardClick = handleCardClick;
+  // }
+
+  show() {
+    console.log(this._name);
+    console.log(this._link);
   }
   _getTemplate() {
       const cardElement = document
