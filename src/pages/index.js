@@ -1,4 +1,4 @@
-import '../pages/index.css';
+// import '../pages/index.css';
 
 import { initialCards, buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput } from '../utils/constants.js';
 import { Card } from '../components/Card.js';
@@ -15,6 +15,7 @@ const editProfilePopup = new PopupWithForm('.page__overlay_type_edit', editProfi
 const addCardPopup = new PopupWithForm('.page__overlay_type_add', addCardSubmitHandler);
 const popupWithImage = new PopupWithImage('.page__overlay_type_look');
 const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.profile__about' });
+// const deleteCardPopup = new PopupWithForm('.page__overlay_type_delete', deleteCardSubmitHandler);
 
 // const cardList = new Section({
 //   // data: initialCards,
@@ -25,6 +26,8 @@ const userInfo = new UserInfo({ nameSelector: '.profile__name', jobSelector: '.p
 //   }
 // }, contentElements);
 
+let user = null;
+
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-24',
   headers: {
@@ -32,6 +35,7 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 }); 
+
 
 
 function generateNewCard(data) {
@@ -46,31 +50,48 @@ function generate(data) {
     data: data,
     renderer: (item) => {
       const cardElement = generateNewCard(item);
+      // console.log(item._id);
       cardList.addItem(cardElement);
     }
   }, contentElements);
   cardList.renderItems();
 }
 
+// api.getUserData()
+// .then (userData => {
+//   // console.log(userData)
+//   user = userData.data
+//   // console.log(user)
+// })
+// .catch(e => console.log(`Error: ${e}`))
 
-api.getInitialCards()
-  .then((arr) => {
-    // console.log(arr);
-    // cardList.renderItems()
-    generate(arr);
-    // arr.forEach(item => {
-    //   const cardElement = generateNewCard(item);
-    //   cardList.prependItem(cardElement);
-    // })
+// api.getInitialCards()
+//   .then((arr) => {
+//     // console.log(arr);
+//     // cardList.renderItems()
+//     generate(arr);
+//       // api.deleteCard(data);
+
+//     // arr.forEach(item => {
+//     //   const cardElement = generateNewCard(item);
+//     //   cardList.prependItem(cardElement);
+//     // })
+//   })
+
+Promise.all([api.getUserData(), api.getInitialCards])
+  .then(([userData, card]) => {
+    console.log(userData);
+    console.log(card)
+    user = userData.data;
+    cardList.renderItems();
   })
-
-
 
 formValidatorAdd.enableValidation();
 formValidatorEdit.enableValidation();
 popupWithImage.setEventListeners();
 editProfilePopup.setEventListeners();
 addCardPopup.setEventListeners();
+// deleteCardPopup.setEventListeners();
 // cardList.renderItems();
 
 // function generateNewCard(data) {
@@ -88,10 +109,20 @@ function cardImageClickHandler(url, text) {
 function addCardSubmitHandler(data) {
   api.addCard(data);
   // api.deleteCard(data);
+// console.log(data);
+  // api.deleteCard(data);
   // const cardElement = generateNewCard(data);
   // cardList.prependItem(cardElement);
   this.close();
 }
+
+// function deleteCardSubmitHandler(data) {
+//   api.addCard(data);
+//   // api.deleteCard(data);
+//   // const cardElement = generateNewCard(data);
+//   // cardList.prependItem(cardElement);
+//   this.close();
+// }
 
 function editProfileSubmitHandler(data) {
   userInfo.setUserInfo(data);

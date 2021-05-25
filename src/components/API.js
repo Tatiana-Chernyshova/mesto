@@ -22,7 +22,7 @@ export default class Api {
   }
 
   addCard({ name, link }) {
-        console.log(link)
+        // console.log(link)
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
@@ -33,16 +33,40 @@ export default class Api {
     })
   }
 
+  // deleteCard(cardId) {
+  //   return fetch(`${this._baseUrl}/cards/${cardId}`, {
+  //     method: 'DELETE',
+  //     headers: this._headers,
+  //   })
+  //   .then(response => this._checkRequestResult(response))
+  //   .catch(error => this._errorHandler(error));
+  // }
+
   deleteCard({ _id }) {
-    console.log(_id)
-//     return fetch(`${this._baseUrl}/cards`, {
-//       method: 'DELETE',
-//       headers: this._headers,
-//       body: JSON.stringify({
-//         name: name,
-//         link: link
-//       })
-// })
+      console.log(_id)
+    return fetch(`${this._baseUrl}/cards/${_id}`, {
+      method: 'DELETE',
+      headers: this._headers,
+      // body: JSON.stringify({
+      //   name: name,
+      //   link: link
+      // })
+    })}
+
+    // Данные пользователя 
+    getUserData() {
+      return fetch(`${this._baseUrl}/users/me`, {
+        headers: this._headers,
+      })
+      .then(result => {
+        if (result.ok) {
+          return result.json()
+        } else {
+          return Promise.reject(result.status)
+        }
+      })
+    }
+
 }
 
   // getInitialCards() {
@@ -71,4 +95,4 @@ export default class Api {
   //       }
   //     }); 
   // }
-}
+// }
