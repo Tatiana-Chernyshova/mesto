@@ -31,6 +31,7 @@ const nameInput = document.querySelector('.popup__input_el_name');
 const aboutInput = document.querySelector('.popup__input_el_about');
 const buttonAdd = document.querySelector('.profile__button_add');
 const contentElements = '.content__elements';
+// const buttonDelete = document.querySelector('elements__button-delete');
 
 const selectors = {
   formSelector: '.popup',

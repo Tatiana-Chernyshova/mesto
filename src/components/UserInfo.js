@@ -5,26 +5,27 @@ export default class UserInfo {
     this._userID = userID;
   }
 
-  // getUserInfo() {
-  //   const userData = {
-  //     myname: this._nameContainer.textContent,
-  //     about: this._jobContainer.textContent
+  getUserInfo() {
+    const userData = {
+      name: this._nameContainer.textContent,
+      about: this._jobContainer.textContent
       
-  //   }
-  //   return userData;
-  // }
-
-  getUser() {
-    return {
-        user: this._userID,
     }
-}
+    return userData;
+  }
 
-setUser({user, userID}) {
-  if (user) {
-      this._nameContainer.textContent = user;
-      this._userID = userID;
-      // console.log(userID)
+//   getUserInfo() {
+//     return {
+//         user: this._userID,
+//     }
+// }
+
+setUserInfo(data) {
+  if (data) {
+      this._nameContainer.textContent = data.name;
+      this._jobContainer.textContent = data.about;
+      this._userID = data.userID;
+      // console.log(data.name)
   }
 }
 

@@ -4,6 +4,7 @@ export default class Section {
     this._renderer = renderer;
     
     this._container = document.querySelector(containerSelector);
+    this._likeContainer = this._container.querySelector('.elements__number');
   }
 
   // renderItems() {
@@ -13,15 +14,21 @@ export default class Section {
   renderItems(items) {
     items.forEach(item => {
         this._renderer(item);
+        // console.log(item.likes.length);
+        // this._likes;
+        // console.log(this._likeContainer);
+        // item.likes.length
     });
 }
 
   addItem(element) {
     this._container.append(element);
+    // console.log(this._likeContainer);
   }
 
   prependItem(element) {
     this._container.prepend(element);
+    
   }
 }
 
