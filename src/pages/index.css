@@ -10,7 +10,9 @@
 @import url('../blocks/header/__logo/header__logo.css');
 
 @import url('../blocks/content/__profile/content__profile.css');
+@import url('../blocks/profile/__avatar/profile__avatar-container.css');
 @import url('../blocks/profile/__avatar/profile__avatar.css');
+@import url('../blocks/profile/__avatar/profile__avatar-edit.css');
 @import url('../blocks/profile/__info/profile__info.css');
 @import url('../blocks/profile/__name/profile__name.css');
 @import url('../blocks/profile/__about/profile__about.css');
@@ -23,9 +25,12 @@
 @import url('../blocks/elements/__image/elements__image.css');
 @import url('../blocks/elements/__box/elements__box.css');
 @import url('../blocks/elements/__caption/elements__caption.css');
+@import url('../blocks/elements/__like-box/elements__like-box.css');
 @import url('../blocks/elements/__button-like/elements__button-like.css');
 @import url('../blocks/elements/__button-like/_active/elements__button-like_active.css');
+@import url('../blocks/elements/__number/elements__number.css');
 @import url('../blocks/elements/__button-delete/elements__button-delete.css');
+@import url('../blocks/elements/__button-delete/_hidden/elements__button-delete_hidden.css');
 
 @import url('../blocks/page/__footer/page__footer.css');
 @import url('../blocks/footer/__copyright/footer__copyright.css');

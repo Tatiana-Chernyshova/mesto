@@ -9,6 +9,7 @@
   background-repeat: no-repeat;
   background-position: center;
   transition: opacity 0.4s linear 0s;
+  margin-top: 10px;
 }
 
 .elements__button-like:hover {

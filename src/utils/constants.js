@@ -1,36 +1,11 @@
-const initialCards = [
-  {
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  },
-];
-
 const escCode = 'Escape';
 const buttonEdit = document.querySelector('.profile__button_edit');
 const nameInput = document.querySelector('.popup__input_el_name');
 const aboutInput = document.querySelector('.popup__input_el_about');
 const buttonAdd = document.querySelector('.profile__button_add');
 const contentElements = '.content__elements';
+const avatarInput = document.querySelector('.popup__input_el_image-avatar');
+const buttonEditAvatar = document.querySelector('.profile__avatar-edit');
 
 const selectors = {
   formSelector: '.popup',
@@ -41,4 +16,4 @@ const selectors = {
   inputErrorClassActive: 'popup__input-error_active',
 };
 
-export { initialCards, escCode, buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput };
+export { escCode, buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput, avatarInput, buttonEditAvatar };
