@@ -34,12 +34,12 @@ const api = new Api({
 
 let user = null;
 
-function editAvatarSubmitHandler () {
+function editAvatarSubmitHandler (data) {
   editAvatarPopup.renderLoading(true);
-  api.editUserAvatar(avatarInput.value)
+  api.editUserAvatar(data.link)
     .then((res) => {
       userInfo.setUserInfo(res);
-      editAvatarPopup.close()
+      editAvatarPopup.close();
     })
     .catch((e) => {
       console.log(e);
@@ -55,15 +55,18 @@ function cardImageClickHandler(url, text) {
 
 function editProfileSubmitHandler(data) {
   editProfilePopup.renderLoading(true);
-  userInfo.setUserInfo(data);
   api.setUserData(data)
-  .catch((err) => {
+  .then(res => {
+    userInfo.setUserInfo(res);
+    editProfilePopup.close();
+  })
+    .catch((err) => {
     console.log(err); // выведем ошибку в консоль
   })
   .finally(() => {
     editProfilePopup.renderLoading(false)
   })
-  this.close();
+  
 }
 
 function generateNewCard(data) {
@@ -89,12 +92,13 @@ function addCardSubmitHandler(data) {
     .then(res => {
       const cardElement = generateNewCard(res);
       cardList.prependItem(cardElement);
+      addCardPopup.close();
     })
     .catch(e => { console.log(e) })
     .finally(() => {
       addCardPopup.renderLoading(false);
     })
-  this.close();
+    
 }
 
 function handleDeleteIconClick(cardId, cardElement) {

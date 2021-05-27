@@ -24,14 +24,14 @@ class Card {
   generateCard() {
     this._element = this._getTemplate();
     const _elementsCaption = this._element.querySelector('.elements__caption');
-    const _elementsImage = this._element.querySelector('.elements__image');
+    this._elementsImage = this._element.querySelector('.elements__image');
     this._likeResult = this._element.querySelector('.elements__number');
     this._buttonDelete = this._element.querySelector('.elements__button-delete');
     this._buttonLike = this._element.querySelector('.elements__button-like');
     
     _elementsCaption.innerText = this._name;
-    _elementsImage.setAttribute('src', this._link);
-    _elementsImage.setAttribute('alt', this._name);
+    this._elementsImage.setAttribute('src', this._link);
+    this._elementsImage.setAttribute('alt', this._name);
     this._likeResult.innerText = this._likes.length;
     if (this._owner._id === this._currentUser) {
       this._buttonDelete.classList.remove('elements__button-delete_hidden')
@@ -49,7 +49,7 @@ class Card {
       this._handleLikeClick();
     });
 
-    this._element.querySelector('.elements__image').addEventListener('click', () => {
+    this._elementsImage.addEventListener('click', () => {
       this._handleCardClick(this._link, this._name);
     });
 }

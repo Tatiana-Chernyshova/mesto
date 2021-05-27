@@ -1,4 +1,3 @@
-const escCode = 'Escape';
 const buttonEdit = document.querySelector('.profile__button_edit');
 const nameInput = document.querySelector('.popup__input_el_name');
 const aboutInput = document.querySelector('.popup__input_el_about');
@@ -16,4 +15,4 @@ const selectors = {
   inputErrorClassActive: 'popup__input-error_active',
 };
 
-export { escCode, buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput, avatarInput, buttonEditAvatar };
+export { buttonEdit, buttonAdd, contentElements, selectors, nameInput, aboutInput, avatarInput, buttonEditAvatar };
